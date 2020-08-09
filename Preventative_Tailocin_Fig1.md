@@ -2,7 +2,7 @@
 
 **Step 1: Prepare the Environment in R**
 
-These commands will load various libraries into the active R environment. If you receive an error that one of these libraries isn't recognized, simply use the command 'install.packages()'
+These commands will load various libraries into the active R environment. If you receive an error that one of these libraries isn't recognized, simply use the command install.packages()`
 
 ```
 library(RCurl)
@@ -15,7 +15,7 @@ library(svglite)
 
 **Step 2: Set Basic Formats For Figure**
 
-This will load the theme for the graph as well as fonts for the axes. In particular the 'font_add_google' function will This function will search the [Google Fonts Repository](https://fonts.google.com/) for a specified family name, download the proper font files, and then add them to sysfonts.
+This will load the theme for the graph as well as fonts for the axes. In particular the `font_add_google` function will This function will search the [Google Fonts Repository](https://fonts.google.com/) for a specified family name, download the proper font files, and then add them to sysfonts.
 
 ```
 font_add_google("Poppins", "Poppins")
