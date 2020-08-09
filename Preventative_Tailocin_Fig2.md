@@ -7,6 +7,7 @@ These commands will load various libraries into the active R environment. If you
 ```
 library(RCurl)
 library(forcats)
+library(dplyr)
 library(showtext)
 library(ggplot2)
 library(svglite)
@@ -34,7 +35,9 @@ Fig2_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_
 
 **Step 4: Create the Plot Background**
 
-This step does a couple of different things at once. First, note the '%>%' function which acts as a pipe between commands. Next, note that I am reordering the factors on the x-axis to be shown in the order I want. You can alter the orders here in case you'd like to rearrange how the data is presented. Next I am labelling the axes and getting rid of the legend. All of these commands create a graph which I've called 'p'.
+This step does a couple of different things at once. First, note the '%>%' function which acts as a pipe between commands. Next, note that I am reordering the factors on the x-axis to be shown in the order I want. You can alter the orders here in case you'd like to rearrange how the data is presented. Next I am labelling the axes and getting rid of the legend. All of these commands create a graph which I've called `p`.
+
+*also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
 p<-Fig2_data%>%
