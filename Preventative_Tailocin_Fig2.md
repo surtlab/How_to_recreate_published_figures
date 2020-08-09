@@ -24,9 +24,9 @@ showtext_auto()
 theme_set(theme_light(base_size=24, base_family="Poppins"))
 ```
 
-**Step 3: Acquire Data to Recreate Figure 1 from Github**
+**Step 3: Acquire Data to Recreate Figure 2 from Github**
 
-The raw data underlying Figure 1 is openly available as a .csv file in Github. The RCurl function allows you to import this data from the webpage, however, you need to make sure that the address is correct and you are pulling in in the raw data.
+The raw data underlying Figure 2 is openly available as a .csv file in Github. The RCurl function allows you to import this data from the webpage, however, you need to make sure that the address is correct and you are pulling in in the raw data.
 We'll pull this raw data into a variable called `Fig1_data` through the use of the `read.csv` function.
 
 ```
