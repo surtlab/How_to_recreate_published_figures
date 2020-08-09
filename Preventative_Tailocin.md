@@ -1,4 +1,4 @@
-# A Basic Guide for Recreating Figures from This Paper
+# A Basic Guide for Recreating Figure 1 from This Paper
 
 **Step 1: Prepare the Environment in R**
 
