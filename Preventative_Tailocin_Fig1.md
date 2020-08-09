@@ -7,6 +7,7 @@ These commands will load various libraries into the active R environment. If you
 ```
 library(RCurl)
 library(forcats)
+library(dplyr)
 library(showtext)
 library(ggplot2)
 library(svglite)
