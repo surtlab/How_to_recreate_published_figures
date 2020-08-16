@@ -30,7 +30,7 @@ The raw data underlying Figure 2 is openly available as a .csv file in Github. T
 We'll pull this raw data into a variable called `Fig1_data` through the use of the `read.csv` function.
 
 ```
-Fig2_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/011R_final.csv"))
+Fig3B_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/011R_final.csv"))
 ```
 
 **Step 4: Create the Plot Background**
@@ -40,7 +40,7 @@ This step does a couple of different things at once. First, note the `%>%` funct
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
-p<-Fig2_data%>%
+p<-Fig3B_data%>%
 mutate(Strain=fct_relevel(Strain,"USA011R","DBL1424","DBL1701","PsyB728a","No Tailocin"))%>%
 ggplot(aes(x=Strain,y=LogCFU,color=Strain))
 +theme(legend.position="none",axis.title=element_text(size=24),panel.grid=element_blank())+labs(x="Strain", y="Log10 Colony Forming Units (CFU)")
@@ -62,8 +62,45 @@ pbp_jitter_color<-p
 The last step here will be to export the graph to a readable figure file using the `ggsave` command. In this case, I will export as both `.png` files and `.svg` files on my desktop and called `Fig1.png` or `Fig1.svg`.
 
 ```
-ggsave(file="~/Desktop/Fig2.png",plot=qbp_jitter_color,width=10,height=8)
-ggsave(file="~/Desktop/Fig2.svg",plot=qbp_jitter_color,width=10,height=8)
+ggsave(file="~/Desktop/Fig3B.png",plot=qbp_jitter_color,width=10,height=8)
+ggsave(file="~/Desktop/Fig3B.svg",plot=qbp_jitter_color,width=10,height=8)
 ```
 
+**Step 7: Statistics
 
+First thing to do is perform a non-parametric Kruskal-Wallis test to see if any strain is different than any other strain in terms of prevention
+
+```
+kruskal.test(LogCFU~Strain, data = Fig3B_data)
+```
+
+Which gives you the following result
+
+```
+	Kruskal-Wallis rank sum test
+
+data:  LogCFU by Strain
+Kruskal-Wallis chi-squared = 35.485, df = 4, p-value =
+3.692e-07
+```
+There is a statistically significant difference! That justifies a follow up test, a pairwise Wilcox test with correction for multiple testing. 
+
+```
+ pairwise.wilcox.test(Fig3B_data$LogCFU, Fig3B_data$Strain,
+                 p.adjust.method = "BH")
+
+```
+Which gives you to following result
+
+```
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  Fig2_data$LogCFU and Fig2_data$Strain 
+
+            DBL1424 DBL1701 No Tailocin PsyB728a
+DBL1701     0.00057 -       -           -       
+No Tailocin 0.55019 0.00078 -           -       
+PsyB728a    0.67981 0.00083 0.89286     -       
+USA011R     0.00021 0.89286 0.00021     0.00021 
+```
+Which means that USA011R and DBL1701 are grouped together into group A, and the other treatments are significantly different than group A and are therefore grouped into group B
