@@ -67,3 +67,40 @@ ggsave(file="~/Desktop/Fig1.svg",plot=qbp_jitter_color,width=10,height=8)
 ```
 
 
+**Step 7: Statistics
+
+First thing to do is perform a non-parametric Kruskal-Wallis test to see if any strain is different than any other strain in terms of prevention
+
+```
+kruskal.test(LogCFU~Strain, data = Fig1_data)
+```
+
+Which gives you the following result
+
+```
+		Kruskal-Wallis rank sum test
+
+data:  LogCFU by Strain
+Kruskal-Wallis chi-squared = 34.812, df = 3, p-value =
+1.335e-07
+```
+There is a statistically significant difference! That justifies a follow up test, a pairwise Wilcox test with correction for multiple testing. 
+
+```
+ pairwise.wilcox.test(Fig1_data$LogCFU, Fig1_data$Strain,
+                 p.adjust.method = "BH")
+
+```
+Which gives you to following result
+
+```
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  Fig1_data$LogCFU and Fig1_data$Strain 
+
+         No Tailocin PaePA01 PsyB728a
+PaePA01  0.53        -       -       
+PsyB728a 0.18        0.69    -       
+PsyCit7  5.2e-06     5.2e-06 5.2e-06 
+```
+Which means that PsyCit7 is grouped into A, and the other treatments are significantly different than group A and are therefore grouped into group B
