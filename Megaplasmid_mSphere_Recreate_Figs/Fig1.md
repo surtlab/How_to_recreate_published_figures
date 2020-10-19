@@ -54,7 +54,7 @@ ggsave(file="~/Desktop/Fig1.svg",plot=q_plots,width=8,height=6)
 ```
 
 
-**Step 6: Statistics
+**Step 6: Statistics**
 
 First thing to do is perform an ANOVA to see if the megaplasmid increases halo size in these strains
 
