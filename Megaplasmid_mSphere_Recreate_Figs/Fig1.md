@@ -43,7 +43,7 @@ q_plots<-q %>% ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 +theme_bw()+ scale_fill_manual(values=c("grey","white"),labels=c("+Megaplasmid","-Megaplasmid"),guide=guide_legend(reverse=TRUE))
 +theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="bottom",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
 +ylab("Halo Size Around Naldixic Acid Disc (Normalized)")```
-
+```
 **Step 5: Export Graph to a Figure File**
 
 The last step here will be to export the graph to a readable figure file using the ggsave command. In this case, I will export as both `.png` files and `.svg` files on my desktop and called `Fig1.png` or `Fig1.svg`.
