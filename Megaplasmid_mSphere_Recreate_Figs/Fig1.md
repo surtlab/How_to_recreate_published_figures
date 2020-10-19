@@ -49,8 +49,8 @@ q_plots<-q %>% ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 The last step here will be to export the graph to a readable figure file using the ggsave command. In this case, I will export as both `.png` files and `.svg` files on my desktop and called `Fig1.png` or `Fig1.svg`.
 
 ```
-ggsave(file="~/Desktop/Fig1.png",plot=q_plots,width=8,height=8)
-ggsave(file="~/Desktop/Fig1.svg",plot=qbp_jitter_color,width=8,height=8)
+ggsave(file="~/Desktop/Fig1.png",plot=q_plots,width=8,height=6)
+ggsave(file="~/Desktop/Fig1.svg",plot=q_plots,width=8,height=6)
 ```
 
 
@@ -71,6 +71,6 @@ Treatment    1 1.6352  1.6352 132.143 1.32e-13 ***
 Strain       2 0.0033  0.0016   0.133    0.876    
 Residuals   36 0.4455  0.0124                     
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 ```
 There is a statistically significant difference! The megaplasmid sensitizes P. stutzeri strain 28a24 (two versions of it) to Nalidixic acid according to Kirby-Bauer diffusion assays
