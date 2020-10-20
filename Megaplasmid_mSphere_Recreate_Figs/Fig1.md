@@ -33,8 +33,11 @@ q<-Fig1_data %>% mutate(Strain=fct_relevel(Strain,"DBL332","DBL386","DBL453","DB
 
 **Step 4: Add Boxplot and Data Points to the Graph**
 
-I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variable for the graph called `q_plots`, and use `geom_boxplot` and `geom_point` to populate the data in the graph. I've set the color for the boxplot to vary based off of the tratement. 
-Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. I've also set the particular colors for each treatment using the `scale_fill_manual` command and by designating colors for each treatment as they appear after the reordering from above. Fill for this is set in the `aes` line above.
+I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variable for the graph called `q_plots`, and use `geom_boxplot` and `geom_point` to populate the data in the graph. 
+. 
+Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. The lengend and axis titles can all be configured using commdands such as `axis.text.y=element(size=FONTSIZE, family=FONT_FAMLILY)` as well as `legend.text=element_text()`.
+
+I've also set the particular colors for each treatment using the `scale_fill_manual` command and by designating colors for each treatment as they appear after the reordering from above. Fill for this is set in the `aes` line above.
 Lastly, I label the Y axis title using `ylab()`.
 
 ```
