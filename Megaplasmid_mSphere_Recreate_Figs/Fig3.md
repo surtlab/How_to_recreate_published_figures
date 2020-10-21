@@ -23,8 +23,8 @@ Fig3A_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data
 This step does a couple of different things at once. First, note the `%>%` function which acts as a pipe between commands. Then I'm using 'mutate' to reorder the data on the x-axis. I do this for both data sets for consistency, and call the data for each graph into a different variable, `p` or `q`
 
 ```
-p<-Fig3A<-Fig3A_data %>% mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
-q<-Fig3B<-Fig3B_data %>% mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
+p<-Fig3A<-Fig3A_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
+q<-Fig3B<-Fig3B_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>%mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
 
 ```
 
