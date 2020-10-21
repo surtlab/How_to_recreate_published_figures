@@ -23,8 +23,8 @@ Fig3A_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data
 This step does a couple of different things at once. First, note the `%>%` function which acts as a pipe between commands. Then I'm using 'mutate' to reorder the data on the x-axis. I do this for both data sets for consistency, and call the data for each graph into a different variable, `p` or `q`
 
 ```
-p<-Fig3A<-Fig3A_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
-q<-Fig3B<-Fig3B_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>%mutate(Strain=fct_relevel(Strain,"DBL305","DBL759","DBL1604","DBL1620"))
+p<-Fig3A<-Fig3A_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Strain=fct_relevel(Strain,"DBL305","DBL1604","DBL759","DBL1620"))
+q<-Fig3B<-Fig3B_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP"))%>%mutate(Strain=fct_relevel(Strain,"DBL305","DBL1604","DBL759","DBL1620"))
 
 ```
 
@@ -42,11 +42,19 @@ Lastly, I add significance values to each of the plots using `stat_compare_means
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
-p_plots<-p%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=14)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=11,family = "Helvetica"),legend.position="none",axis.title.x=element_blank())+ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
+p_plots<-p%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
++geom_boxplot(width=0.4,outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
++scale_fill_manual(values=c("white","grey"))
++theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family ="Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family=Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
++ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
 ```
 I do this for both sets of data
 ```
-q_plots<-q %>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=14)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=11,family = "Helvetica"),legend.position="none",axis.title.x=element_blank())+ylab("Halo Size Around Ciprofloxaxin Disc (Normalized)")
+q_plots<-q %>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
++geom_boxplot(width=0.4,outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
++scale_fill_manual(values=c("white","grey"))
++theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family ="Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family=Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
++ylab("Halo Size Around Ciprofloxaxin Disc (Normalized)")
 ```
 
 **Step 5: Combine Graphs Together into One Grid***
