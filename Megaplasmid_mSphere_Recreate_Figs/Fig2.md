@@ -62,7 +62,7 @@ ggsave(file="~/Desktop/Fig2.svg",plot=q_plots,width=8,height=6)
 
 **Step 6: Statistics**
 
-In this case, we are going to be doing a bunch of ttests of the wild type and megaplasmid backgrounds for each strain. We've got to pull the data for each strain into it's own variable:
+We've already included ttest results in the graphs using the code above. However, below you'll find the code to pull these data and perform ttests independently. First we've got to pull the data for each strain into it's own variable:
 
 ```
 DBL880<-subset(Fig2_data, Strain=="DBL880",select=c(Normalized_Area))
@@ -77,4 +77,76 @@ DAB462<-subset(Fig2_data, Strain=="DAB462",select=c(Normalized_Area))
 DAB895<-subset(Fig2_data, Strain=="DAB895",select=c(Normalized_Area))
 
 ```
-There is a statistically significant difference! The megaplasmid sensitizes P. stutzeri strain 28a24 (two versions of it) to Nalidixic acid according to Kirby-Bauer diffusion assays
+Next, we actually perform the ttests like so:
+
+```
+> t.test(DBL880,DBL907,var.equal=FALSE)
+```
+
+Which yields the following result:
+
+```
+	Welch Two Sample t-test
+
+data:  DBL880 and DBL907
+t = -11.133, df = 26.414, p-value = 1.779e-11
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.9008174 -0.6202076
+sample estimates:
+mean of x mean of y 
+ 1.000011  1.760523 
+```
+And another significant difference! Just like was plotted for the graph!
+
+> t.test(DAB282,DBL187,var.equal=FALSE)
+
+	Welch Two Sample t-test
+
+data:  DAB282 and DBL187
+t = -9.5573, df = 45.812, p-value = 1.755e-12
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.5353400 -0.3490546
+sample estimates:
+mean of x mean of y 
+ 1.000032  1.442229 
+
+> t.test(DBL883,DBL910,var.equal=FALSE)
+
+	Welch Two Sample t-test
+
+data:  DBL883 and DBL910
+t = -13.514, df = 43.895, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.7128173 -0.5277935
+sample estimates:
+mean of x mean of y 
+ 1.000035  1.620341 
+
+> t.test(DBL885,DBL912,var.equal=FALSE)
+
+	Welch Two Sample t-test
+
+data:  DBL885 and DBL912
+t = -15.872, df = 21.134, p-value = 3.219e-13
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.4692532 -0.3605660
+sample estimates:
+mean of x mean of y 
+ 1.000010  1.414919 
+
+> t.test(DAB462,DAB895,var.equal=FALSE)
+
+	Welch Two Sample t-test
+
+data:  DAB462 and DAB895
+t = -4.1488, df = 52.633, p-value = 0.0001224
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.1635243 -0.0569289
+sample estimates:
+mean of x mean of y 
+ 1.000033  1.110259 
