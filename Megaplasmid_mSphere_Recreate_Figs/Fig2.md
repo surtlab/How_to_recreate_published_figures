@@ -15,7 +15,7 @@ library(tidyverse)
 **Step 2: Acquire Data to Recreate Figure 1 from Github**
 
 ```
-Fig2_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/Final_Data_Overlay_All_together.csv"))
+Fig2_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/mSphere_megaplasmid_2020/Final_Data_Overlay_All_together.csv"))
 ```
 **Step 3: Create the Plot Data Order**
 
