@@ -75,6 +75,8 @@ DBL885<-subset(Fig2_data, Strain=="DBL885",select=c(Normalized_Area))
 DBL912<-subset(Fig2_data, Strain=="DBL912",select=c(Normalized_Area))
 DAB462<-subset(Fig2_data, Strain=="DAB462",select=c(Normalized_Area))
 DAB895<-subset(Fig2_data, Strain=="DAB895",select=c(Normalized_Area))
+DBL163<-subset(Fig2_data, Strain=="DBL163",select=c(Normalized_Area))
+DBL877<-subset(Fig2_data, Strain=="DBL877",select=c(Normalized_Area))
 
 ```
 Next, we actually perform the ttests like so:
