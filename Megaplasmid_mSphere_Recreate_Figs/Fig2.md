@@ -24,8 +24,7 @@ This step does a couple of different things at once. First, note the `%>%` funct
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
-q<-Fig2_data %>% mutate(Treatment=fct_relevel(Treatment,"wt","pMP"))
-
+q<-Fig2_data %>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP")) %>% mutate(Genomic_Background=recode(Genomic_Background,'P. stutzeri DBL880'="P.stutzeri 28a69",'P. stutzeri DAB282'="P.stutzeri JM300",'P. fluorescens DBL163'="P.fluorescens Pf0-1",'P. stutzeri DBL883'="P.stutzeri 28a72",'P. stutzeri DBL885'="P.stutzeri 28a63",'P. syringae DAB462'="P.syringae Pla8007"))
 
 ```
 
