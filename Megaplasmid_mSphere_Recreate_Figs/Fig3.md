@@ -50,11 +50,12 @@ p_plots<-p%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 ```
 I do this for both sets of data
 ```
-q_plots<-q %>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
-+geom_boxplot(width=0.4,outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
+q_plots<-q%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
++geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
 +scale_fill_manual(values=c("white","grey"))
-+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family ="Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family=Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
-+ylab("Halo Size Around Ciprofloxaxin Disc (Normalized)")
++theme_bw()
++theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
++ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
 ```
 
 **Step 5: Combine Graphs Together into One Grid***
