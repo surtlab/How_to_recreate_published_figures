@@ -65,16 +65,16 @@ ggsave(file="~/Desktop/Fig2.svg",plot=q_plots,width=8,height=6)
 In this case, we are going to be doing a bunch of ttests of the wild type and megaplasmid backgrounds for each strain. We've got to pull the data for each strain into it's own variable:
 
 ```
-DBL880<-subset(Nal_Other, Strain=="DBL880",select=c(Normalized_Area))
-DBL907<-subset(Nal_Other, Strain=="DBL907",select=c(Normalized_Area))
-DBL187<-subset(Nal_Other, Strain=="DBL187",select=c(Normalized_Area))
-DAB282<-subset(Nal_Other, Strain=="DAB282",select=c(Normalized_Area))
-DBL883<-subset(Nal_Other, Strain=="DBL883",select=c(Normalized_Area))
-DBL910<-subset(Nal_Other, Strain=="DBL910",select=c(Normalized_Area))
-DBL885<-subset(Nal_Other, Strain=="DBL885",select=c(Normalized_Area))
-DBL912<-subset(Nal_Other, Strain=="DBL912",select=c(Normalized_Area))
-DAB462<-subset(Nal_Other, Strain=="DAB462",select=c(Normalized_Area))
-DAB895<-subset(Nal_Other, Strain=="DAB895",select=c(Normalized_Area))
+DBL880<-subset(Fig2_data, Strain=="DBL880",select=c(Normalized_Area))
+DBL907<-subset(Fig2_data, Strain=="DBL907",select=c(Normalized_Area))
+DBL187<-subset(Fig2_data, Strain=="DBL187",select=c(Normalized_Area))
+DAB282<-subset(Fig2_data, Strain=="DAB282",select=c(Normalized_Area))
+DBL883<-subset(Fig2_data, Strain=="DBL883",select=c(Normalized_Area))
+DBL910<-subset(Fig2_data, Strain=="DBL910",select=c(Normalized_Area))
+DBL885<-subset(Fig2_data, Strain=="DBL885",select=c(Normalized_Area))
+DBL912<-subset(Fig2_data, Strain=="DBL912",select=c(Normalized_Area))
+DAB462<-subset(Fig2_data, Strain=="DAB462",select=c(Normalized_Area))
+DAB895<-subset(Fig2_data, Strain=="DAB895",select=c(Normalized_Area))
 
 ```
 There is a statistically significant difference! The megaplasmid sensitizes P. stutzeri strain 28a24 (two versions of it) to Nalidixic acid according to Kirby-Bauer diffusion assays
