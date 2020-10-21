@@ -69,8 +69,8 @@ pq_plot<-plot_grid(Fig3A,Fig3B,labels=c("A","B"),label_size=20)
 The last step here will be to export the graph to a readable figure file using the ggsave command. In this case, I will export as both `.png` files and `.svg` files on my desktop and called `Fig1.png` or `Fig1.svg`.
 
 ```
-ggsave(file="~/Desktop/Fig3.png",plot=pq_plots,width=8,height=6)
-ggsave(file="~/Desktop/Fig3.svg",plot=pq_plots,width=8,height=6)
+ggsave(file="~/Desktop/Fig3.png",plot=pq_plot,width=8,height=6)
+ggsave(file="~/Desktop/Fig3.svg",plot=pq_plot,width=8,height=6)
 ```
 
 
