@@ -36,18 +36,17 @@ I am a huge fan of showing each specific data point as well as a summary of the 
 Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. The lengend and axis titles can all be configured using commdands such as `axis.text.y=element(size=FONTSIZE, family=FONT_FAMILY)` as well as `legend.text=element_text()`.
 
 I've also set the particular colors for each treatment using the `scale_fill_manual` command and by designating colors for each treatment as they appear after the reordering from above. Fill for this is set in the `aes` line above.
-Then I use `facet_wrap` to bring together the data into one grid, and label the Y axis title using `ylab()`.
-Lastly, I add significance values to each of the plots using `stat_compare_means`.
+
+I also place the legend inside of the first figure using `legend.position=c(.2,.1)`
 
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
-p_plots<-p%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
-+geom_boxplot(width=0.4,outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
-+scale_fill_manual(values=c("white","grey"))
-+theme_bw()
-+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family ="Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family=Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
-+ylab("Halo Size Around Ciprofloxaxin Disc (Normalized)")
+p_plots<-p%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))+geom_boxplot(width=0.4, outlier.shape=NA)
++geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
++theme_bw(base_size=14)+scale_fill_manual(values=c("white","grey"))
++theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position=c(.2,.1),axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=12,family="Helvetica"))
++ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
 ```
 I do this for both sets of data
 ```
