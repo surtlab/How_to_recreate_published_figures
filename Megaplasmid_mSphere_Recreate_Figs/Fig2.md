@@ -19,9 +19,7 @@ Fig2_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_
 ```
 **Step 3: Create the Plot Data Order**
 
-This step does a couple of different things at once. First, note the `%>%` function which acts as a pipe between commands. Then I'm using 'mutate' to reorder the data on the x-axis. Then I'm loading the data into ggplot. Them I'm adding the boxplot (adding this before points so that it is behind points. 
-
-*also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
+This step does a couple of different things at once. First, note the `%>%` function which acts as a pipe between commands. Then I'm using 'mutate' to rename a couple of different variable sets. The first is the `Treatment` variable, which will end up being in the legend. The second is the `Genomic_Background` variable, which I use to group the strains into genomic backgrounds and then plot each as different graphs.
 
 ```
 q<-Fig2_data %>% mutate(Treatment=recode(Treatment,'wt'="-pMP",'pMP'="+pMP")) %>% mutate(Genomic_Background=recode(Genomic_Background,'P. stutzeri DBL880'="P.stutzeri 28a69",'P. stutzeri DAB282'="P.stutzeri JM300",'P. fluorescens DBL163'="P.fluorescens Pf0-1",'P. stutzeri DBL883'="P.stutzeri 28a72",'P. stutzeri DBL885'="P.stutzeri 28a63",'P. syringae DAB462'="P.syringae Pla8007"))
@@ -37,6 +35,8 @@ Have set the theme as `theme_bw` with a bunch of modifications to the axis/legen
 I've also set the particular colors for each treatment using the `scale_fill_manual` command and by designating colors for each treatment as they appear after the reordering from above. Fill for this is set in the `aes` line above.
 Then I use `facet_wrap` to bring together the data into one grid, and label the Y axis title using `ylab()`.
 Lastly, I add significance values to each of the plots using `stat_compare_means`.
+
+*also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
 ```
 q_plots<-q%>%ggplot(aes(x=Treatment, y=Normalized_Area,fill=Treatment))
