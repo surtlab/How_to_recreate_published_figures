@@ -79,10 +79,10 @@ DBL163<-subset(Fig2_data, Strain=="DBL163",select=c(Normalized_Area))
 DBL877<-subset(Fig2_data, Strain=="DBL877",select=c(Normalized_Area))
 
 ```
-Next, we actually perform the ttests like so:
+Next, for strains DBL880 and DBL907, we actually perform the ttests like so:
 
 ```
-> t.test(DBL880,DBL907,var.equal=FALSE)
+t.test(DBL880,DBL907,var.equal=FALSE)
 ```
 
 Which yields the following result:
@@ -101,8 +101,12 @@ mean of x mean of y
 ```
 And another significant difference! Just like was plotted for the graph!
 
-> t.test(DAB282,DBL187,var.equal=FALSE)
-
+Now for the rest of the strain pairs, here's DAB282 and DBL187
+```
+t.test(DAB282,DBL187,var.equal=FALSE)
+```
+And results
+```
 	Welch Two Sample t-test
 
 data:  DAB282 and DBL187
@@ -113,9 +117,13 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of x mean of y 
  1.000032  1.442229 
-
-> t.test(DBL883,DBL910,var.equal=FALSE)
-
+```
+DBL883 and DBL910
+```
+t.test(DBL883,DBL910,var.equal=FALSE)
+```
+And results
+```
 	Welch Two Sample t-test
 
 data:  DBL883 and DBL910
@@ -126,9 +134,13 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of x mean of y 
  1.000035  1.620341 
-
-> t.test(DBL885,DBL912,var.equal=FALSE)
-
+```
+DBL885 and DBL912
+```
+t.test(DBL885,DBL912,var.equal=FALSE)
+```
+And results
+```
 	Welch Two Sample t-test
 
 data:  DBL885 and DBL912
@@ -139,9 +151,13 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of x mean of y 
  1.000010  1.414919 
-
-> t.test(DAB462,DAB895,var.equal=FALSE)
-
+```
+DAB462 and DAB895
+```
+t.test(DAB462,DAB895,var.equal=FALSE)
+```
+And results
+```
 	Welch Two Sample t-test
 
 data:  DAB462 and DAB895
@@ -152,3 +168,21 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of x mean of y 
  1.000033  1.110259 
+```
+And finally DBL163 and DBL877
+```
+t.test(DBL877,DBL163,var.equal=FALSE)
+```
+and results (this is the closest one)
+```
+	Welch Two Sample t-test
+
+data:  DBL877 and DBL163
+t = 2.087, df = 30.042, p-value = 0.04547
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.002271814 0.209256810
+sample estimates:
+mean of x mean of y 
+ 1.105884  1.000119 
+```
