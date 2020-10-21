@@ -8,6 +8,7 @@ library(dplyr)
 library(ggplot2)
 library(ggpubr)
 library(tidyverse)
+library(ggpubr)
 ```
 
 **Step 2: Acquire Data to Recreate Figure 1 from Github**
@@ -15,8 +16,8 @@ library(tidyverse)
 For this one we are going to build two different graphs and then combine them together at the end. So first, we need to load data for the two different graphs:
 
 ```
-Fig3B_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/Final_Putida_Cip_Results.csv"))
 Fig3A_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/Final_Putida_Nal_Results.csv"))
+Fig3B_data<-read.csv(text=getURL("https://raw.githubusercontent.com/surtlab/data_for_figures/master/Final_Putida_Cip_Results.csv"))
 ```
 **Step 3: Create the Plot Data Order**
 
@@ -55,13 +56,13 @@ q_plots<-q%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 +scale_fill_manual(values=c("white","grey"))
 +theme_bw()
 +theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="none",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
-+ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
++ylab("Halo Size Around Ciprofloxacin Disc (Normalized)")
 ```
 
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pq_plot<-plot_grid(Fig3A,Fig3B,labels=c("A","B"),label_size=20)
+pq_plot<-plot_grid(p_plots,q_plots,labels=c("A","B"),label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
