@@ -31,10 +31,9 @@ This step does a couple of different things at once. First, note the `%>%` funct
 
 ```
 p<- Fig4A_data %>% mutate(Strain_Pair=recode(Strain_Pair,'C305-1604'="DBL1604/DBL305",'D305-1620'="DBL1620/DBL305")) 
-q<- ≈
-r<-Fig4C_data %>% mutate(Treatment=recode(Treatment,'Cip 0 ng/uL'="0",'Cip 0.5 ng/uL'="0.5"))
-s<-
-```
+q<- Fig4B_data %>% mutate(Treatment=recode(Treatment,'Nal 0 ng/uL'="0",'Nal 20 ng/uL'="20",'Nal 40 ng/uL'="40"))
+r<- Fig4C_data %>% mutate(Treatment=recode(Treatment,'Cip 0 ng/uL'="0",'Cip 0.5 ng/uL'="0.5"))
+s<- Fig4D_data %>% mutate(Treatment=recode(Treatment,'27oC'="27",'37oC'="37"))
 
 **Step 4: Add Boxplot and Data Points to the Graph**
 
@@ -52,18 +51,18 @@ I also place the legend inside of the first figure using `legend.position=c(.2,.
 ```
 p_plot<-p %>% ggplot(aes(x=Strain_Pair, y=Comp_Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=13,family = "Helvetica"),legend.position="none",axis.title.x=element_blank())+ylab("Relative Fitness")
 
-q_plot<-q %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=13,family = "Helvetica"),legend.position="none",axis.title.x=element_blank())+ylab("   ")
+q_plot<-q %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=12,family = "Helvetica"),axis.title.x=element_text(size=16, family ="Helvetica"),axis.title.y=element_text(size=16,family="Helvetica"),legend.position="none")+ylab("Relative Fitness")+xlab(expression("Naldixic Acid Concentration " * mu*"g/mL"))
 
 r_plot<-r %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=12,family = "Helvetica"),axis.title.x=element_text(size=16, family ="Helvetica"),axis.title.y=element_text(size=16,family="Helvetica"),legend.position="none")+ylab("Relative Fitness")+xlab(expression("Ciprofloxaxin Concentration " * mu*"g/mL"))
 
-s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=13,family = "Helvetica"),legend.position="none",axis.title.x=element_blank())+ylab("   ")
+s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.4, outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))+theme_bw(base_size=16)+scale_fill_manual(values=c("grey","white"))+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(), strip.text=element_text(size=10,family = "Helvetica"),axis.text.x=element_text(size=12,family = "Helvetica"),axis.title.x=element_text(size=16, family ="Helvetica"),axis.title.y=element_text(size=16,family="Helvetica"),legend.position="none")+ylab("Relative Fitness")+xlab(expression("Temperature ( "^"o"*"C)"))
 
 ```
 
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pq_plot<-plot_grid(p_plots,q_plots,labels=c("A","B"),label_size=20)
+pqrs_plot<-plot_grid(p_plots,q_plots,r_plot,s_lot),labels=c("A","B","C","D"),label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
