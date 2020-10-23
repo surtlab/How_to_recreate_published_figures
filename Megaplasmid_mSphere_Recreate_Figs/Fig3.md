@@ -62,7 +62,7 @@ q_plots<-q%>%ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pq_plot<-plot_grid(p_plots,q_plots,labels=c("A","B"),label_size=20)
+pq_plot<-plot_grid(p_plots,q_plots,labels=c("A)","B)"),label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
