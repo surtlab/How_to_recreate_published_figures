@@ -42,8 +42,9 @@ s<- Fig4D_data %>% mutate(Treatment=recode(Treatment,'27oC'="27",'37oC'="37"))
 I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variables for the graphs called
 `p_plots` and `q_plots`, and use `geom_boxplot` and `geom_point` to populate the data in the graph. 
 . 
-Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. The lengend and axis titles can all be configured using commdands such as `axis.text.y=element(size=FONTSIZE, family=FONT_FAMILY)` as well as `legend.text=element_text()`.
+Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. The axis titles and text can all be configured using commdands such as `axis.text.y=element(size=FONTSIZE, family=FONT_FAMILY)` as well as `axis.title.x=element(size=FONTSIZE, family=FONT_FAMILY`. 
 
+For three of the graphs I use `stat_compare_means` to put significance values in the graph itself
 
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
@@ -59,8 +60,10 @@ s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.
 
 **Step 5: Combine Graphs Together into One Grid***
 
+Now I call all the graphs together using `plot_grid`. I can set the label, and use `hjust` and `vjust` to put the label in the correct position
+
 ```
-pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A)","B)","C)","D)"),hjust=0,vjust=1,label_size=20)
+pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A)","B)","C)","D)"),hjust=0,vjust=1.2,label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
