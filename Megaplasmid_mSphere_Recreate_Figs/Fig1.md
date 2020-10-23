@@ -42,7 +42,7 @@ Lastly, I label the Y axis title using `ylab()`.
 
 ```
 q_plots<-q %>% ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
-+geom_boxplot(width=.5,outlier.shape=NA)+geom_point()
++geom_boxplot(width=.5,outlier.shape=NA)+geom_point(alpha=0.5,fill="grey",pch=21,position=position_jitter(width=0.11))
 +theme_bw()+ scale_fill_manual(values=c("grey","white"),labels=c("+pMP","-pMP"),guide=guide_legend(reverse=TRUE))
 +theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position=c(0.8,0.1),axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
 +ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
