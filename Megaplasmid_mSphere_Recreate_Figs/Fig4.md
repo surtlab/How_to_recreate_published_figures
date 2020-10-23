@@ -44,9 +44,6 @@ I am a huge fan of showing each specific data point as well as a summary of the 
 . 
 Have set the theme as `theme_bw` with a bunch of modifications to the axis/legend fonts and sizes. These are all done through the `theme()` command using commands like `axis.text.x(element_text=()`. I get rid of grid lines using `theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank()`. The lengend and axis titles can all be configured using commdands such as `axis.text.y=element(size=FONTSIZE, family=FONT_FAMILY)` as well as `legend.text=element_text()`.
 
-I've also set the particular colors for each treatment using the `scale_fill_manual` command and by designating colors for each treatment as they appear after the reordering from above. Fill for this is set in the `aes` line above.
-
-I also place the legend inside of the first figure using `legend.position=c(.2,.1)`
 
 *also important to note that if you are copy/pasting the lines below that the '+' cannot be on a new line or the code will not work*
 
@@ -63,7 +60,7 @@ s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A","B","C","D"),label_size=20)
+pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A)","B)","C)","D)"),label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
