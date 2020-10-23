@@ -35,6 +35,8 @@ q<- Fig4B_data %>% mutate(Treatment=recode(Treatment,'Nal 0 ng/uL'="0",'Nal 20 n
 r<- Fig4C_data %>% mutate(Treatment=recode(Treatment,'Cip 0 ng/uL'="0",'Cip 0.5 ng/uL'="0.5"))
 s<- Fig4D_data %>% mutate(Treatment=recode(Treatment,'27oC'="27",'37oC'="37"))
 
+```
+
 **Step 4: Add Boxplot and Data Points to the Graph**
 
 I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variables for the graphs called
