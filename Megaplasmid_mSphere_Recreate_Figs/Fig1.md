@@ -44,7 +44,7 @@ Lastly, I label the Y axis title using `ylab()`.
 q_plots<-q %>% ggplot(aes(x=Strain, y=Normalized_Area,fill=Treatment))
 +geom_boxplot(width=.5,outlier.shape=NA)+geom_point()
 +theme_bw()+ scale_fill_manual(values=c("grey","white"),labels=c("+Megaplasmid","-Megaplasmid"),guide=guide_legend(reverse=TRUE))
-+theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position="bottom",axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.position=c(.2,.1),legend.text=element_text(size=10,family="Helvetica"))
++theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank(),axis.text.x=element_text(size=12,family = "Helvetica"),axis.text.y=element_text(size=12,family="Helvetica"),legend.position=c(0.8,0.1),axis.title.x=element_blank(),axis.title.y=element_text(size=14,family="Helvetica"),legend.title=element_blank(),legend.text=element_text(size=10,family="Helvetica"))
 +ylab("Halo Size Around Naldixic Acid Disc (Normalized)")
 ```
 **Step 5: Export Graph to a Figure File**
