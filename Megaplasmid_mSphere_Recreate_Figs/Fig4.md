@@ -62,7 +62,7 @@ s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pqrs_plot<-plot_grid(p_plots,q_plots,r_plot,s_lot),labels=c("A","B","C","D"),label_size=20)
+pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A","B","C","D"),label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
@@ -70,8 +70,8 @@ pqrs_plot<-plot_grid(p_plots,q_plots,r_plot,s_lot),labels=c("A","B","C","D"),lab
 The last step here will be to export the graph to a readable figure file using the ggsave command. In this case, I will export as both `.png` files and `.svg` files on my desktop and called `Fig1.png` or `Fig1.svg`.
 
 ```
-ggsave(file="~/Desktop/Fig3.png",plot=pq_plot,width=8,height=6)
-ggsave(file="~/Desktop/Fig3.svg",plot=pq_plot,width=8,height=6)
+ggsave(file="~/Desktop/Fig4.png",plot=pqrs_plot,width=8,height=6)
+ggsave(file="~/Desktop/Fig4.svg",plot=pqrs_plot,width=8,height=6)
 ```
 
 
