@@ -60,7 +60,7 @@ s_plot<-s %>% ggplot(aes(x=Treatment, y=Relative.Fitness))+geom_boxplot(width=0.
 **Step 5: Combine Graphs Together into One Grid***
 
 ```
-pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A)","B)","C)","D)"),label_size=20)
+pqrs_plot<-plot_grid(p_plot,q_plot,r_plot,s_plot,labels=c("A)","B)","C)","D)"),hjust=0,vjust=1,label_size=20)
 ```
 
 **Step 6: Export Graph to a Figure File**
