@@ -8,7 +8,6 @@ library(dplyr)
 library(ggplot2)
 library(ggpubr)
 library(tidyverse)
-library(ggpubr)
 ```
 
 **Step 2: Acquire Data to Recreate Figure 1 from Github**
@@ -75,4 +74,104 @@ ggsave(file="~/Desktop/Fig3.svg",plot=pq_plot,width=8,height=6)
 ```
 
 
-**Step 6: Statistics**
+**Step 7: Statistics**
+
+Going to show the statistics for each graph separately below. First up is performing a ttest on the comparisons from Figure 3A, the Naldixic acid disc overlays for different P. putida strain pairs. First thing I will do is pull the data from each strain into it's own set from the overall dataset:
+
+```
+DBL305_Nal<-subset(Fig3A_data, Strain=="DBL305",select=c(Normalized_Area))
+DBL759_Nal<-subset(Fig3A_data, Strain=="DBL759",select=c(Normalized_Area))
+DBL1604_Nal<-subset(Fig3A_data, Strain=="DBL1604",select=c(Normalized_Area))
+DBL1620_Nal<-subset(Fig3A_data, Strain=="DBL1620",select=c(Normalized_Area))
+```
+
+Next, we can simply call the `t.test` function to compare pairs of strains. Don't necessarily need to do this in a full ANOVA context because the data within easy assay is normalized to that assay (which limits some of the assay to assay variance).
+
+```
+t.test(DBL305_Nal,DBL759_Nal, var.equal=FALSE)
+```
+
+Which gives the following results for strain pair DBL305 and DBL759:
+
+```
+	Welch Two Sample t-test
+
+data:  DBL305_Nal and DBL759_Nal
+t = 4.1626, df = 32.132, p-value = 0.00022
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.06903193 0.20129320
+sample estimates:
+mean of x mean of y 
+1.0000198 0.8648572 
+```
+
+and then we do the same for strain pair DBL1604 and DBL1620:
+
+```
+t.test(DBL1604_Nal,DBL759_Nal,var.equal=FALSE)
+```
+
+giving the following results for strain pair DBL1604 and DBL1620:
+
+```
+	Welch Two Sample t-test
+
+data:  DBL1604_Nal and DBL759_Nal
+t = 5.6875, df = 37.037, p-value = 1.659e-06
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.08701157 0.18331103
+sample estimates:
+mean of x mean of y 
+1.0000185 0.8648572 
+```
+
+Next, I repeat the exact same analysis for the Ciprofloxacin pairs from the `Fig3B_data` dataset.
+
+```
+DBL305_Cip<-subset(Fig3B_data, Strain=="DBL305",select=c(Normalized_Area))
+DBL759_Cip<-subset(Fig3B_data, Strain=="DBL759",select=c(Normalized_Area))
+DBL1604_Cip<-subset(Fig3B_data, Strain=="DBL1604",select=c(Normalized_Area))
+DBL1620_Cip<-subset(Fig3B_data, Strain=="DBL1620",select=c(Normalized_Area))
+```
+
+```
+t.test(DBL305_Cip,DBL759_Cip, var.equal=FALSE)
+```
+
+Which gives the following results for strain pair DBL305 and DBL759:
+
+```
+	Welch Two Sample t-test
+
+data:  DBL305_Cip and DBL759_Cip
+t = -3.6281, df = 35.75, p-value = 0.000884
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.14264362 -0.04033493
+sample estimates:
+mean of x mean of y 
+ 1.000010  1.091499 
+```
+
+and then we do the same for strain pair DBL1604 and DBL1620:
+
+```
+t.test(DBL1604_Cip,DBL1620_Cip, var.equal=FALSE)
+```
+
+giving the following results for strain pair DBL1604 and DBL1620:
+
+```
+		Welch Two Sample t-test
+
+data:  DBL1604_Cip and DBL1620_Cip
+t = -1.0747, df = 26.284, p-value = 0.2923
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.07118778  0.02228794
+sample estimates:
+mean of x mean of y 
+ 1.000009  1.024459 
+```
