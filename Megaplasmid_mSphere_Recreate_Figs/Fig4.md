@@ -8,7 +8,6 @@ library(dplyr)
 library(ggplot2)
 library(ggpubr)
 library(tidyverse)
-library(ggpubr)
 library(cowplot)
 ```
 
@@ -77,3 +76,116 @@ ggsave(file="~/Desktop/Fig4.svg",plot=pqrs_plot,width=8,height=6)
 
 
 **Step 6: Statistics**
+
+OK, one figure at a time for the statistics. First up is Figure 4A, which compares wild type white/blue megaplasmid- strains as well as white megaplasmid- and blue megaplasmid+ strain in the P. putida background.
+
+Set up the ANOVA framework:
+
+```
+Comp_Fitness_Putida<-aov(Comp_Fitness~Strain_Pair+Strain_Pair:Assay, data=Fig4A_data)
+```
+Check the summary stats of the ANOVA.
+
+```
+summary(Comp_Fitness_Putida)
+```
+Which yields the following stats:
+```            Df  Sum Sq Mean Sq F value   Pr(>F)    
+Strain_Pair        1 0.21936 0.21936   600.3  < 2e-16 ***
+Strain_Pair:Assay  2 0.08519 0.04260   116.6 9.47e-12 ***
+Residuals         20 0.00731 0.00037                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+Now I test to see whether there is any effect of the blue/white pair of control strains by testing whether this ratio is different than 1. I pull this particular strain pair out of the overall data set.
+```
+wt_comp<-subset(Fig4A_data, Strain_Pair=="C305-1604",select=c(Comp_Fitness))
+```
+And test using a ttest against the expectation of "1".
+```
+t.test(wt_comp,mu=1,var.equal=FALSE)
+
+```
+Which yields the answer that, no, there doesn't seem to be an effect of the marker (blue) gene
+```
+	One Sample t-test
+
+data:  wt_comp
+t = 1.5792, df = 11, p-value = 0.1426
+alternative hypothesis: true mean is not equal to 1
+95 percent confidence interval:
+ 0.995927 1.024764
+sample estimates:
+mean of x 
+ 1.010345 
+ ```
+Now I simply do the same ANOVA for each of the comparisons in Figures 4B, 4C, and 4D.
+```
+Nal_comp<-subset(Fig4BCD_data, Experiment=="Nal",select=c(Relative.Fitness,Treatment,Replicate))
+Cip_comp<-subset(Fig4BCD_data, Experiment=="Cipro",select=c(Relative.Fitness,Treatment,Replicate))
+Temp_comp<-subset(Fig4BCD_data, Experiment=="Temp",select=c(Relative.Fitness,Treatment,Replicate))
+```
+And set up the ANOVA framework for each experiment.
+```
+Nal_Fitness<-aov(Relative.Fitness~Treatment+Treatment:Replicate, data=Nal_comp)
+Cip_Fitness<-aov(Relative.Fitness~Treatment+Treatment:Replicate, data=Cip_comp)
+Temp_Fitness<-aov(Relative.Fitness~Treatment+Treatment:Replicate, data=Temp_comp)
+```
+and now take the ANOVA summary of each in step, first up the Naldixic acid comparison.
+```
+summary(Nal_Fitness)
+```
+which yields
+```
+                  Df Sum Sq Mean Sq F value   Pr(>F)    
+Treatment            2 0.2897 0.14484  264.82 1.54e-13 ***
+Treatment:Replicate  3 0.1477 0.04924   90.04 1.23e-10 ***
+Residuals           17 0.0093 0.00055                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+So there are significant effects for both the treatment (Nal level) as well as a block assay effect. Now I'll set up a Post-hoc Tukey's HSD test to step through the Nal results
+```
+TukeyHSD(Nal_Fitness)
+```
+which yields (there are values for the assay block effect too, but I'm not going to include those below
+```
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Relative.Fitness ~ Treatment + Treatment:Replicate, data = Nal_comp)
+
+$Treatment
+                               diff       lwr       upr p adj
+Nal 20 ng/uL-Nal 0 ng/uL  0.1413158 0.1113179 0.1713137     0
+Nal 40 ng/uL-Nal 0 ng/uL  0.2782291 0.2471783 0.3092798     0
+Nal 40 ng/uL-Nal 20 ng/uL 0.1369133 0.1058626 0.1679641     0
+
+```
+Which means that all of the comparisons are signficantly different by post hoc test!
+
+Now, I can simply do the same kind of ANOVA for each of the remaining two datasets (although I don't have to really perform a Tukey's HSD on these because there are only two levels in each case so the significance terms will pop out of the summary stats as a significant `Treatment` effect.
+```
+summary(Cip_Fitness)
+```
+Gives a significant treatment result.
+```
+                    Df Sum Sq Mean Sq F value   Pr(>F)    
+Treatment            1 1.8124  1.8124  178.89 8.64e-11 ***
+Treatment:Replicate  4 0.0482  0.0121    1.19    0.349    
+Residuals           18 0.1824  0.0101                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+And the same for the temperature effect.
+```
+summary(Temp_Fitness)
+```
+```
+                  Df Sum Sq Mean Sq F value   Pr(>F)    
+Treatment            1 0.3228  0.3228 319.380 6.66e-13 ***
+Treatment:Replicate  4 0.0396  0.0099   9.799 0.000217 ***
+Residuals           18 0.0182  0.0010                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
