@@ -41,7 +41,7 @@ This step does a couple of different things at once. First, note the `%>%` funct
 
 ```
 p<-Fig3B_data%>%
-mutate(Strain=fct_relevel(Strain,"USA011R","DBL1424","DBL1701","PsyB728a","No Tailocin"))%>%mutate(Strain=recode(Treatment,'DBL1424'="USA011RΔRbp",'DBL1701'="USA011RΔRbp+Rbp"))
+mutate(Strain=fct_relevel(Strain,"USA011R","DBL1424","DBL1701","PsyB728a","No Tailocin"))%>%
 ggplot(aes(x=Strain,y=LogCFU,color=Strain))
 +theme(legend.position="none",axis.title=element_text(size=24),panel.grid=element_blank())+labs(x="Strain", y="Log10 Colony Forming Units (CFU)")
 ```
