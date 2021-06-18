@@ -53,7 +53,7 @@ I am a huge fan of showing each specific data point as well as a summary of the 
 ```
 qbp_jitter_color<-q
 +geom_boxplot(color = "gray50", outlier.alpha = 0)
-+geom_jitter(size = 2, alpha = 0.4, width = 0.2)
++geom_jitter((aes(shape=Replicate),size = 2, alpha = 0.4, width = 0.2)
 +scale_color_manual(values=c("blue","springgreen4","mediumpurple","grey38"))
 ```
 
