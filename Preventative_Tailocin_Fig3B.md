@@ -41,14 +41,14 @@ This step does a couple of different things at once. First, note the `%>%` funct
 
 ```
 p<-Fig3B_data%>%
-mutate(Strain=fct_relevel(Strain,"USA011R","DBL1424","DBL1701","PsyB728a","No Tailocin"))%>%
+mutate(Strain=fct_relevel(Strain,"USA011R","USA011RΔRbp","USA011RΔRbp+Rbp","PsyB728a","No Tailocin"))%>%
 ggplot(aes(x=Strain,y=LogCFU,color=Strain))
 +theme(legend.position="none",axis.title=element_text(size=24),panel.grid=element_blank())+labs(x="Strain", y="Log10 Colony Forming Units (CFU)")
 ```
 
 **Step 5: Add Boxplot and Data Points to the Graph**
 
-I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variable for the graph called `qbp_jitter_color`, and use `geom_boxplot` and `geom_jitter` to populate the data in the graph. I've set the color for the boxplot as a somewhat dark grey, and I've set the alpha value for geom_jitter (which determines the transparency of the data points). Within this command, I've also set the particular colors for each of the strain's data points through the `scale_color_manual` command and by designating colors for each strain as they appear after the reordering from above.
+I am a huge fan of showing each specific data point as well as a summary of the data using a boxplot. To do this, I create a new variable for the graph called `qbp_jitter_color`, and use `geom_boxplot` and `geom_jitter` to populate the data in the graph. I've set the color for the boxplot as a somewhat dark grey, and I've set the alpha value for geom_jitter (which determines the transparency of the data points). Within this command, I've also set the particular colors for each of the strain's data points through the `scale_color_manual` command and by designating colors for each strain as they appear after the reordering from above. Lastly, I reset `aes` inside of `geom_jitter` so that the boxplot will be overlayed on data points that are shaped depending on which replicate experiment they came from.
 
 ```
 pbp_jitter_color<-p
