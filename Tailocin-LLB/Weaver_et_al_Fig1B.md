@@ -82,16 +82,16 @@ Check the summary stats of the ANOVA.
 summary(Tailocin_size)
 ```
 Which yields the following stats:
-```            Df  Sum Sq Mean Sq F value   Pr(>F)    
-Strain_Pair        1 0.21936 0.21936   600.3  < 2e-16 ***
-Strain_Pair:Assay  2 0.08519 0.04260   116.6 9.47e-12 ***
-Residuals         20 0.00731 0.00037                     
+```                Df Sum Sq Mean Sq F value Pr(>F)    
+Tailocin            4 1592.2   398.1   298.6 <2e-16 ***
+Tailocin:Replicate  5  557.8   111.6    83.7 <2e-16 ***
+Residuals          47   62.6     1.3                   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 So there are significant effects for both the treatment (Tailocin) as well as a block assay effect. Now I'll set up a Post-hoc Tukey's HSD test to step through the Nal results
 ```
-TukeyHSD(Tailocin_Xize)
+TukeyHSD(Tailocin_size)
 ```
 which yields (there are values for the assay block effect too, but I'm not going to include those below)
 ```
