@@ -89,3 +89,31 @@ Residuals         20 0.00731 0.00037
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
+So there are significant effects for both the treatment (Tailocin) as well as a block assay effect. Now I'll set up a Post-hoc Tukey's HSD test to step through the Nal results
+```
+TukeyHSD(Tailocin_Xize)
+```
+which yields (there are values for the assay block effect too, but I'm not going to include those below)
+```
+ Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Area ~ Tailocin + Tailocin:Replicate, data = Fig1B_data)
+
+$Tailocin
+                         diff         lwr         upr     p adj
+Ptt-A-11-A          9.6198168   8.2234469  11.0161868 0.0000000
+Ptt-B-11-A         -0.9512992  -2.3182686   0.4156702 0.2943747
+PttPEG-A-11-A      10.3152374   8.9188675  11.7116074 0.0000000
+PttPEG-B-11-A      -1.4865542  -2.8535235  -0.1195848 0.0268581
+Ptt-B-Ptt-A       -10.5711160 -11.9380854  -9.2041466 0.0000000
+PttPEG-A-Ptt-A      0.6954206  -0.7009493   2.0917906 0.6227797
+PttPEG-B-Ptt-A    -11.1063710 -12.4733404  -9.7394016 0.0000000
+PttPEG-A-Ptt-B     11.2665366   9.8995673  12.6335060 0.0000000
+PttPEG-B-Ptt-B     -0.5352550  -1.8721774   0.8016674 0.7869030
+PttPEG-B-PttPEG-A -11.8017916 -13.1687610 -10.4348222 0.0000000
+
+```
+Which means that the size of the overlay of the Ptt tailocin (and PEG prepped version of this tailocin) against sensitivity class A strains signficantly differs by post hoc test from the tailocin from strain 011 against sensitivity class A strains!
+
+There does not appear to be a significant difference of PEG treatment on the size of the overlay, and the size of the overlay for strain 011 tailocin against sensitivity class A is no statistically different than the size of the Ptt tailocin overlay against sensitivity class B. 
