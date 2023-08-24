@@ -82,7 +82,8 @@ Check the summary stats of the ANOVA.
 summary(Tailocin_size)
 ```
 Which yields the following stats:
-```                Df Sum Sq Mean Sq F value Pr(>F)    
+```
+                   Df Sum Sq Mean Sq F value Pr(>F)    
 Tailocin            4 1592.2   398.1   298.6 <2e-16 ***
 Tailocin:Replicate  5  557.8   111.6    83.7 <2e-16 ***
 Residuals          47   62.6     1.3                   
