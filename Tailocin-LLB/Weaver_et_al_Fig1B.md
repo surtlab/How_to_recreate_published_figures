@@ -118,3 +118,28 @@ PttPEG-B-PttPEG-A -11.8017916 -13.1687610 -10.4348222 0.0000000
 Which means that the size of the overlay of the Ptt tailocin (and PEG prepped version of this tailocin) against sensitivity class A strains signficantly differs by post hoc test from the tailocin from strain 011 against sensitivity class A strains!
 
 There does not appear to be a significant difference of PEG treatment on the size of the overlay, and the size of the overlay for strain 011 tailocin against sensitivity class A is no statistically different than the size of the Ptt tailocin overlay against sensitivity class B. 
+
+Lastly, we truly care about the comparison between the Ptt killing activity against sensitivity class A strains compared to all other killing activity (USA011 against A and Ptt against sensitivity class B combined). To set up this ttest we subset the data from these two classes
+```
+PttA<-subset(Fig1B_data, Ptt=="PttA",select=c(Area))
+NonPttA<-subset(Fig1B_data, Ptt==NonPttA",select=c(Area)")
+```
+and then perform a ttest with these two groups against each other
+```
+t.test (PttA,NotPttA,var.equal=FALSE)
+```
+which yields a highly significant result regardless of possible p value corrections for multiple tests
+```
+	Welch Two Sample t-test
+
+data:  PttA and NotPttA
+t = 9.4536, df = 22.506, p-value = 2.681e-09
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  8.436461 13.170264
+sample estimates:
+mean of x mean of y 
+19.237446  8.434083 
+	Welch Two Sample t-test
+```
+
